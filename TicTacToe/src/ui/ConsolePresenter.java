@@ -4,11 +4,7 @@ package ui;
 
 import java.io.PrintStream;
 
-import logic.GameStatus;
-import logic.Presenter;
-import model.Cell;
-import model.CellValue;
-import model.ReadOnlyBoard;
+import logic.*;
 
 public class ConsolePresenter implements Presenter {
 
@@ -61,7 +57,7 @@ public class ConsolePresenter implements Presenter {
 		out.print("|");
 
 		for (int j = 0; j < board.getSize(); j++) {
-			Cell cell = new Cell(j, i);
+			CellWrapped cell = new CellWrapped(j, i);
 			
 			printCell(board, cell);
 
@@ -72,8 +68,8 @@ public class ConsolePresenter implements Presenter {
 		out.println();
 	}
 
-	private void printCell(ReadOnlyBoard board, Cell cell) {
-		CellValue currentValue = board.getValueAt(cell);
+	private void printCell(ReadOnlyBoard board, CellWrapped cell) {
+		CellValueWrapped currentValue = board.getValueAt(cell);
 		switch (currentValue) {
 		case X:
 			out.print("x");

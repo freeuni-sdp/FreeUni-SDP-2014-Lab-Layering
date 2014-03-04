@@ -1,7 +1,6 @@
 package ui;
 
 import logic.*;
-import model.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class ConsolePlayer implements Player {
 	public void makeMove(ReadOnlyBoard board, PlayerColor playerColor, MoveListener moveListener) {
 		
 		printWhoIsOnTurn(playerColor);
-		Cell nextMove = nextMoveUntilLegal(board);
+		CellWrapped nextMove = nextMoveUntilLegal(board);
 		moveListener.makeMove(nextMove);
 	
 	}
@@ -36,12 +35,12 @@ public class ConsolePlayer implements Player {
 		}
 	}
 
-	private Cell nextMoveUntilLegal(ReadOnlyBoard board) {
+	private CellWrapped nextMoveUntilLegal(ReadOnlyBoard board) {
 		while (true) {
 			try {
 				int x = nextIntUntilOk("X=? ");
 				int y = nextIntUntilOk("Y=? ");
-				Cell moveCandidate = new Cell(x, y);
+				CellWrapped moveCandidate = new CellWrapped(x, y);
 				Boolean isEmpty = board.isEmpty(moveCandidate);
 				if (isEmpty) {
 					return moveCandidate;

@@ -1,7 +1,7 @@
 package logic;
+
 import model.Cell;
 import model.CellValue;
-import model.ReadOnlyBoard;
 
 
 
@@ -37,7 +37,7 @@ public class PrimeReferee implements Referee {
 		for(int i=0; i<board.getSize(); i++) {
 			for(int j=0; j<board.getSize(); j++) {
 				Cell cell = new Cell(i,j);
-				CellValue currentValue = board.getValueAt(cell);
+				CellValue currentValue = board.getValueAt(new CellWrapped(cell)).toCellValue();
 				if (value==currentValue) {
 					product*=scoreBoard[cell.x][cell.y];
 				}
