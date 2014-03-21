@@ -1,0 +1,58 @@
+@startuml
+class Board {
+	+Board()
+	+boolean isFull()
+	+CellValue getValueAt(Cell)
+	+boolean isEmpty(Cell)
+	+void makeMove(Cell, CellValue)
+	+int getSize()
+}
+
+
+interface ReadOnlyBoard {
+	boolean isFull()
+	CellValue getValueAt(Cell)
+	int getSize()
+	boolean isEmpty(Cell)
+}
+
+class Game {
+	-Player xPlayer
+	-Player oPlayer
+	-Board board
+	-Referee referee
+	-Presenter presenter
+	+Game(Board, xPlayer, oPlayer, Referee, Presenter)
+	+void play()
+}
+
+interface Player {
+	void makeMove(ReadOnlyBoard, PlayerColor, MoveListener)
+}
+
+interface Presenter {
+	void show(ReadOnlyBoard, GameStatus)
+}
+
+interface Referee {
+	GameStatus getGameStatus(ReadOnlyBoard)
+}
+
+interface MoveListener {
+	void makeMove(Cell cell)
+}
+
+ReadOnlyBoard <|.. Board : restricts >
+
+Game *-- Player : instructs >
+Game *-- Referee : asks >
+Game *-- Presenter : instructs >
+Game *-- MoveListener : creates >
+Referee -- ReadOnlyBoard : looks at >
+Presenter -- ReadOnlyBoard : looks at >
+Player -- ReadOnlyBoard : looks at >
+Player -- MoveListener : notifies >
+MoveListener *-- Board :  modifies >
+
+
+@enduml
