@@ -22,6 +22,7 @@ public class Main {
 	public static void main(String[] args) {
 		if (args.length==0) {
 			playConsole();
+			return;
 		}
 		
 		String arg0 = args[0];
