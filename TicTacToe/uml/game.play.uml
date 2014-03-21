@@ -1,0 +1,56 @@
+@startuml
+
+participant Referee
+participant Presenter
+
+participant Game
+
+
+participant xPlayer
+actor Alice #red
+participant xListener
+
+participant Board
+
+participant oListener
+participant oPlayer
+actor Bob
+
+
+create xListener 
+Game -> xListener : new
+
+create oListener 
+Game -> oListener : new
+
+
+loop until (gameStatus == GameStatus.INPROGRESS)
+
+Game -> Referee : getGameStatus(board)
+Game -> Presenter : show(board, gameStatus);
+
+
+	alt (currentColor == X)
+		Game -> xPlayer : makeMove(board, currentColor, xMoveListener)
+		xPlayer -> Alice
+		activate Alice
+		Alice --> xPlayer
+		deactivate Alice
+		xPlayer -> xListener : makeMove(cell)
+		xListener -> Board : makeMove(cell, X)
+				
+	else 
+		Game -> oPlayer : makeMove(board, currentColor, xMoveListener)
+		oPlayer -> Bob
+		activate Bob
+		Bob --> oPlayer
+		deactivate Bob
+		oPlayer -> oListener : makeMove(cell)
+		oListener -> Board : makeMove(cell, O)
+		
+		
+	end
+	Game -> Game : swapColor(currentColor);
+end
+
+@enduml

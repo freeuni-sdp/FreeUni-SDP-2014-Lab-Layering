@@ -1,0 +1,31 @@
+@startuml
+
+state INPROGRESS
+state XISWINNER
+state OISWINNER
+state DRAW
+
+[*] -down-> INPROGRESS
+INPROGRESS -down-> XISWINNER
+INPROGRESS -down-> OISWINNER
+INPROGRESS -down-> DRAW
+
+INPROGRESS -> INPROGRESS
+
+XISWINNER -down-> [*]
+OISWINNER -down-> [*]
+DRAW -down-> [*]
+
+note left of INPROGRESS
+   Game is only 
+   active in this state
+end note
+
+note left of DRAW
+   Referee decides
+   if the transition takes place
+end note
+
+
+
+@enduml

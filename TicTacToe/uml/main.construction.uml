@@ -1,0 +1,24 @@
+@startuml
+
+create Presenter
+Main -> Presenter : new(output)
+
+create Board
+Main -> Board : new()
+
+create xPlayer
+Main -> xPlayer : new()
+
+create oPlayer
+Main -> oPlayer : new()
+
+create Game
+Main -> Game : new(board, xPlayer, oPlayer, referee, presenter)
+
+Main -> Game : play()
+note right : See game.play.uml
+activate Game
+Game --> Main
+deactivate Game
+
+@enduml
