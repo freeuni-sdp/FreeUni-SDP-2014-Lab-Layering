@@ -26,13 +26,13 @@ public class Main {
 		
 		String arg0 = args[0];
 		switch(arg0) {
-			case "console":
-			case "c":
+			case "-console":
+			case "-c":
 				playConsole();
 				break;
 				
-			case "gui":
-			case "g":
+			case "-gui":
+			case "-g":
 				playGui();
 				break;				
 				
@@ -43,13 +43,13 @@ public class Main {
 	}
 
 	/**
-	 * 
+	 * Prints usage help message to console
 	 */
 	private static void printHelp(String arg0) {
 		System.out.println(String.format("Invalid argument '%s'", arg0));
 		System.out.println("Please specify on of the following arguments:");
-		System.out.println("-console / -c : to start the console game variant");
-		System.out.println("-gui / -g : to start the gui game variant");
+		System.out.println("-console / -c \t to start the console game variant");
+		System.out.println("-gui / -g \t to start the gui game variant");
 		//TODO: Please add help for options starting further game variants here
 	}
 
