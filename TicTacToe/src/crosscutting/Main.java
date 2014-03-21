@@ -20,7 +20,7 @@ public class Main {
 		Referee referee = new PrimeReferee();
 		
 		Game game = new Game(board, xPlayer, oPlayer, referee, presenter);
-		game.play();
+		game.play(PlayerColor.X);
 		
 		scanner.close();
 	}

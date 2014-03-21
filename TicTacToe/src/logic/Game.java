@@ -19,9 +19,9 @@ public class Game {
 		this.presenter = presenter;
 	}
 
-	public void play() {
+	public void play(PlayerColor startColor) {
 		GameStatus gameStatus;
-		PlayerColor currentColor = PlayerColor.X;
+		PlayerColor currentColor = startColor;
 
 		MoveListener xMoveListener = new MoveListener() {
 			public void makeMove(Cell cell) {
