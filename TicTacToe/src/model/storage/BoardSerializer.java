@@ -1,4 +1,4 @@
-package logic.storage;
+package model.storage;
 
 import model.ReadOnlyBoard;
 
