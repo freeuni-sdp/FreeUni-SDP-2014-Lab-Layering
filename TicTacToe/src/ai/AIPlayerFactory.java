@@ -1,5 +1,7 @@
 package ai;
 
+import java.util.Random;
+
 import logic.Player;
 import model.ReadOnlyBoard;
 
@@ -22,10 +24,20 @@ public class AIPlayerFactory {
 	 * ReadOnlyBoard object.
 	 */
 	public Player getRandom3x3Player(ReadOnlyBoard board) {
+		checkBoard(board);
+		MovesHelper movesHelper = new SimpleMovesHelper(board);
+		Random random = new Random(0);
+		return new RandomPlayer(movesHelper, random);
+	}
+
+	public Player getInteligent3X3Player(ReadOnlyBoard board) {
+		checkBoard(board);
+		MovesHelper movesHelper = new SimpleMovesHelper(board);
+		return new Inteligent3X3Player(movesHelper);
+	}
+	
+	private void checkBoard(ReadOnlyBoard board) {
 		if (board.getSize() != 3)
 			throw new IllegalArgumentException("Board size must be 3.");
-
-		MovesHelper movesHelper = new SimpleMovesHelper(board);
-		return new RandomPlayer(movesHelper);
 	}
 }
