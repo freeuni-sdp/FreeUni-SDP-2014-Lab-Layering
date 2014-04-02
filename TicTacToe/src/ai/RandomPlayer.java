@@ -27,9 +27,14 @@ public class RandomPlayer implements Player {
 	 *
 	 * @param movesHelper
 	 */
-	public RandomPlayer(MovesHelper movesHelper) {
+	/*
+	 * I have added injection for random
+	 * Random shoudn't be created in RandomPlayer 
+	 * because then make move randomly can't be tested from outside
+	 */
+	public RandomPlayer(MovesHelper movesHelper, Random random) {
 		this.movesHelper = movesHelper;
-		random = new Random();
+		this.random = random;
 	}
 
 	/**
