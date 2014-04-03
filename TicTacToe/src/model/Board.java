@@ -51,7 +51,7 @@ public class Board implements ReadOnlyBoard {
 	private void setValueAt(Cell cell, CellValue value) {
 		if (!isEmpty(cell)) 
 			throw new IllegalArgumentException("The cell is not emty.");
-		
+		moveCount++;
 		matrix[cell.x][cell.y] = value;
 	}
 }
