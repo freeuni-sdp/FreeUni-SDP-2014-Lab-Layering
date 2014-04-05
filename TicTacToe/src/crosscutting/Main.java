@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import logic.*;
 import model.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ui.*;
 
 /**
@@ -58,10 +57,24 @@ public class Main {
 	 * Constructs and starts the console game
 	 */
 	private static void playConsole() {
+		Presenter presenter = new ConsolePresenter(System.out);
+
+		playGame(presenter);
+	}
+	
+	/**
+	 * Constructs and starts the GUI game
+	 */
+	private static void playGui() {
+		Presenter presenter = new GUIPresenter();
+		
+		playGame(presenter);
+	}
+	
+	private static void playGame(Presenter presenter) {
 		Scanner scanner = new Scanner(System.in);
 
 		try {
-			Presenter presenter = new ConsolePresenter(System.out);
 			Board board = new Board();
 			Player xPlayer = new ConsolePlayer(scanner, System.out);
 			Player oPlayer = new ConsolePlayer(scanner, System.out);
@@ -74,10 +87,4 @@ public class Main {
 		}
 	}
 	
-	/**
-	 * Constructs and starts the GUI game
-	 */
-	private static void playGui() {
-		throw new NotImplementedException();
-	}
 }
