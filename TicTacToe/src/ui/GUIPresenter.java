@@ -3,8 +3,10 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +26,7 @@ public class GUIPresenter implements Presenter {
 	
 	private JPanel messagesPanel;
 		
-	private Button[][] arrayOfButtons;
+	private JButton[][] arrayOfButtons;
 	
 	private JPanel buttonsPanel = new JPanel();
 
@@ -72,13 +74,15 @@ public class GUIPresenter implements Presenter {
 			}	
 		}
 		container.add(buttonsPanel, BorderLayout.CENTER);
+		container.invalidate();
+		container.validate();
+		container.repaint();
+		
 		if (gameStatus != GameStatus.INPROGRESS) {
 			JOptionPane.showMessageDialog(container, getStatusMessage(gameStatus));
 			message.setText("Game Finished!");
 		}
-		container.invalidate();
-		container.validate();
-		container.repaint();
+		
 	}
 	
 	private String getStatusMessage(GameStatus status)
@@ -99,13 +103,14 @@ public class GUIPresenter implements Presenter {
 
 	private void initButtons(ReadOnlyBoard board) 
 	{
-		arrayOfButtons = new Button[board.getSize()][board.getSize()];
+		arrayOfButtons = new JButton[board.getSize()][board.getSize()];
 		for (int i = 0; i < board.getSize(); i++) {
 			for (int j = 0; j < board.getSize(); j++) {
 				String value = board.getValueAt(new Cell(i, j)).name();
-				Button b = new Button(value);
+				JButton b = new JButton(value);
+				b.setFont(new Font("bold", Font.BOLD, 22));
 				b.setFocusable(false);
-				b.setBackground(Color.CYAN);
+				b.setBackground(Color.LIGHT_GRAY);
 				arrayOfButtons[i][j] = b;
 			}
 		}
