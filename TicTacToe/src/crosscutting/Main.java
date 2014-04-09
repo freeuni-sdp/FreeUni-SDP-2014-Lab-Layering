@@ -86,11 +86,18 @@ public class Main {
 
 	}
 
+	/**
+	 * @author Tamar Keshelava. 
+	 * 		Referee referee = new PrimeReferee();	
+	 * 		Here we create PrimeReferee object, because we have 3x3 board, but if we 
+	 *		want to change game rules we must write this:
+	 * 		Referee referee = new ProReferee();	
+	 */
 	private static void playGame(Presenter presenter, Player xPlayer,
 			Player oPlayer) {
 
 		Board board = new Board();
-		Referee referee = new PrimeReferee();
+		Referee referee = new PrimeReferee();		
 		Game game = new Game(board, xPlayer, oPlayer, referee, presenter);
 		game.play(PlayerColor.X);
 

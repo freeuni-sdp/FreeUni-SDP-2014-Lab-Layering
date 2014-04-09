@@ -4,8 +4,17 @@ import model.Cell;
 import model.CellValue;
 import model.ReadOnlyBoard;
 
+
+/**
+ * @author Tamar Keshelava. 
+ * 		ProReferee class implements Referee interface. 
+ */
 public class ProReferee implements Referee{
 
+	/**
+	 * 	Here is overloaded getGameStatus(ReadOnlyBoard board) method. 
+	 *  this method return who won the game.
+	 */
 	@Override
 	public GameStatus getGameStatus(ReadOnlyBoard board) {
 		if(isWinner(board, CellValue.X))
@@ -16,6 +25,10 @@ public class ProReferee implements Referee{
 			return GameStatus.DRAW;
 		return GameStatus.INPROGRESS;
 	}
+	
+	/**
+	 *	This method decides if value type (X or O) is winner. 
+	 */
 	boolean isWinner(ReadOnlyBoard board, CellValue value){
 		//Create board for dynamic programming slightly bigger then original
 		Helper[][] dp = new Helper[board.getSize() + 1][board.getSize() + 1];
@@ -38,6 +51,11 @@ public class ProReferee implements Referee{
 		}
 		return false;
 	}
+	
+	/**
+	 *	This class calculate how many same signs are horizontally, vertically 
+	 *	or diagonally.
+	 */
 	private class Helper{
 		int h;
 		int d;
@@ -47,6 +65,11 @@ public class ProReferee implements Referee{
 			this.h = h;
 			this.v = v;
 		}
+		
+		/**
+		 *	Method returns true if horizontal vertical or diagonal variables are 
+		 *	more or equals 5.
+		 */
 		public boolean isWinning(){
 			return (h >= 5 || d >= 5 || v >= 5);
 		}
