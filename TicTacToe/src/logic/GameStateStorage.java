@@ -1,5 +1,7 @@
 package logic;
 
+import java.io.IOException;
+
 import model.FileStorage;
 
 /**
@@ -17,10 +19,18 @@ public class GameStateStorage {
 	}
 	
 	public void save(String key, GameState gameState) {
-		fileStorage.save(key, gameStateSerializer.serialize(gameState));
+		try {
+			fileStorage.save(key, gameStateSerializer.serialize(gameState));
+		} catch (IOException e){
+			throw new RuntimeException("error with io", e);
+		}
 	}
 	
 	public GameState load(String key) {
-		return gameStateSerializer.deserialize(fileStorage.load(key));
+		try {
+			return gameStateSerializer.deserialize(fileStorage.load(key));
+		} catch (IOException e){
+			throw new RuntimeException("error with io", e);
+		}
 	}
 }
