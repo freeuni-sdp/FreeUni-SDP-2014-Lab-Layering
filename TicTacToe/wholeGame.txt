@@ -3,31 +3,55 @@ Current: x
 x--
 ---
 ---
-Move Duration: 0m 2s
-
-Current: o
-x--
-o--
----
 Move Duration: 0m 1s
 
+Current: o
+xo-
+---
+---
+Move Duration: 0m 4s
+
 Current: x
-xx-
-o--
+xox
+---
 ---
 Move Duration: 0m 3s
 
 Current: o
-xx-
-oo-
+xox
+-o-
 ---
+Move Duration: 1m 1s
+
+Current: x
+xox
+-o-
+-x-
+Move Duration: 0m 2s
+
+Current: o
+xox
+-o-
+ox-
 Move Duration: 0m 2s
 
 Current: x
-xxx
-oo-
----
+xox
+xo-
+ox-
+Move Duration: 0m 2s
+
+Current: o
+xox
+xo-
+oxo
 Move Duration: 0m 1s
 
-X is winner
-Game Durration: 0h 0m 10s
+Current: x
+xox
+xox
+oxo
+Move Duration: 0m 1s
+
+drow
+Game Durration: 0h 1m 25s

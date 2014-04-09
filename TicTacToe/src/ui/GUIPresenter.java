@@ -1,17 +1,14 @@
 package ui;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import logic.GameStatus;
 import logic.Presenter;
 import model.Cell;
@@ -32,7 +29,11 @@ public class GUIPresenter implements Presenter {
 	
 	private ButtonClickListener listener;
 
-	
+	/**
+	 * GUI presenter of TicTacToe game
+	 * @param listener - button click listener for interactive GUI
+	 * @param header - header label for game status
+	 */
 	public GUIPresenter(ButtonClickListener listener,JLabel header)
 	{
 		
@@ -42,6 +43,9 @@ public class GUIPresenter implements Presenter {
 		initHeader();
 	}
 	
+	/**
+	 * initialize JFrame
+	 */
 	private void initContainer()
 	{
 		container = new JFrame();
@@ -50,6 +54,9 @@ public class GUIPresenter implements Presenter {
 		container.setBackground(Color.blue);
 	}
 	
+	/**
+	 * initialize header component for window
+	 */
 	private void initHeader() 
 	{
 		
@@ -90,6 +97,11 @@ public class GUIPresenter implements Presenter {
 		
 	}
 	
+	/**
+	 * factory method for status message
+	 * @param status - GameStatus object
+	 * @return status message
+	 */
 	private String getStatusMessage(GameStatus status)
 	{
 		switch (status) {
@@ -106,6 +118,10 @@ public class GUIPresenter implements Presenter {
 	}
 	
 
+	/**
+	 * initialize buttons
+	 * @param board
+	 */
 	private void initButtons(ReadOnlyBoard board) 
 	{
 		arrayOfButtons = new JButton[board.getSize()][board.getSize()];
