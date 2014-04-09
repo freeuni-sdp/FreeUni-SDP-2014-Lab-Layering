@@ -29,10 +29,15 @@ public class GUIPresenter implements Presenter {
 	private JButton[][] arrayOfButtons;
 	
 	private JPanel buttonsPanel = new JPanel();
+	
+	private ButtonClickListener listener;
 
 	
-	public GUIPresenter()
+	public GUIPresenter(ButtonClickListener listener,JLabel header)
 	{
+		
+		this.listener = listener;
+		message = header;
 		initContainer();
 		initHeader();
 	}
@@ -47,7 +52,7 @@ public class GUIPresenter implements Presenter {
 	
 	private void initHeader() 
 	{
-		message = new JLabel();
+		
 		message.setText("Welcome to TicTacToe");
 
 		messagesPanel = new JPanel();
@@ -111,6 +116,8 @@ public class GUIPresenter implements Presenter {
 				b.setFont(new Font("bold", Font.BOLD, 22));
 				b.setFocusable(false);
 				b.setBackground(Color.LIGHT_GRAY);
+				b.setName(""+i+","+j);
+				b.addActionListener(listener);
 				arrayOfButtons[i][j] = b;
 			}
 		}
