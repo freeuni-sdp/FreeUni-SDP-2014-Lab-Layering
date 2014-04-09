@@ -1,0 +1,33 @@
+game is on 3 X 3 board
+Current: x
+x--
+---
+---
+Move Duration: 0m 2s
+
+Current: o
+x--
+o--
+---
+Move Duration: 0m 1s
+
+Current: x
+xx-
+o--
+---
+Move Duration: 0m 3s
+
+Current: o
+xx-
+oo-
+---
+Move Duration: 0m 2s
+
+Current: x
+xxx
+oo-
+---
+Move Duration: 0m 1s
+
+X is winner
+Game Durration: 0h 0m 10s

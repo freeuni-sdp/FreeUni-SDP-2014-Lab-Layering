@@ -34,7 +34,7 @@ public class Game {
 				board.makeMove(cell, CellValue.O);
 			}
 		};
-
+		WholeGameWriter wholeGameWriter = new WholeGameWriter("wholeGame.txt",board.getSize());
 		do {
 			gameStatus = referee.getGameStatus(board);
 			presenter.show(board, gameStatus);
@@ -50,10 +50,12 @@ public class Game {
 				oPlayer.makeMove(board, currentColor, oMoveListener);
 				break;
 			}
-
+			
+			wholeGameWriter.addState(board,currentColor );
 			currentColor = swapColor(currentColor);
 
 		} while (true);
+		wholeGameWriter.endOfGame(gameStatus);
 	}
 
 	private PlayerColor swapColor(PlayerColor playerColor) {
