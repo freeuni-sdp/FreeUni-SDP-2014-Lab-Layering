@@ -36,6 +36,15 @@ public class AIPlayerFactory {
 		return new Inteligent3X3Player(movesHelper);
 	}
 	
+	/**
+	 * Factory method for Intelligent32X32Player, first of its kind, but not so dumb, really.
+	 */
+	public Player getIntelligent32X32Player(ReadOnlyBoard board) {
+		checkBoard(board);
+		MovesHelper movesHelper = new SimpleMovesHelper(board);
+		return new Intelligent32X32Player(movesHelper);
+	}
+	
 	private void checkBoard(ReadOnlyBoard board) {
 		if (board.getSize() != 3)
 			throw new IllegalArgumentException("Board size must be 3.");
