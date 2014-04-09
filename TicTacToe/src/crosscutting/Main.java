@@ -1,45 +1,45 @@
 package crosscutting;
 
+import java.awt.Button;
 import java.util.Scanner;
+
+import javax.swing.JLabel;
 
 import logic.*;
 import model.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ui.*;
 
 /**
- * @author George Mamaladze
- * This is a launcher class for the application.
- * It responsible for object graph creation and starting the game.
+ * @author George Mamaladze This is a launcher class for the application. It
+ *         responsible for object graph creation and starting the game.
  */
 public class Main {
 
 	/**
-	 * Starts a game variant based on console arguments.
-	 * Wrong argument prints help.
-	 * Missing argument starts the default console game.
-	 */	
+	 * Starts a game variant based on console arguments. Wrong argument prints
+	 * help. Missing argument starts the default console game.
+	 */
 	public static void main(String[] args) {
-		if (args.length==0) {
+		if (args.length == 0) {
 			playConsole();
 			return;
 		}
-		
+
 		String arg0 = args[0];
-		switch(arg0) {
-			case "-console":
-			case "-c":
-				playConsole();
-				break;
-				
-			case "-gui":
-			case "-g":
-				playGui();
-				break;				
-				
-			default:
-				printHelp(arg0);
-				break;
+		switch (arg0) {
+		case "-console":
+		case "-c":
+			playConsole();
+			break;
+
+		case "-gui":
+		case "-g":
+			playGui();
+			break;
+
+		default:
+			printHelp(arg0);
+			break;
 		}
 	}
 
@@ -49,9 +49,10 @@ public class Main {
 	private static void printHelp(String arg0) {
 		System.out.println(String.format("Invalid argument '%s'", arg0));
 		System.out.println("Please specify on of the following arguments:");
-		System.out.println("-console / -c \t to start the console game variant");
+		System.out
+				.println("-console / -c \t to start the console game variant");
 		System.out.println("-gui / -g \t to start the gui game variant");
-		//TODO: Please add help for options starting further game variants here
+		// TODO: Please add help for options starting further game variants here
 	}
 
 	/**
@@ -59,25 +60,40 @@ public class Main {
 	 */
 	private static void playConsole() {
 		Scanner scanner = new Scanner(System.in);
-
+		Presenter presenter = new ConsolePresenter(System.out);
+		Player xPlayer = new ConsolePlayer(scanner, System.out);
+		Player oPlayer = new ConsolePlayer(scanner, System.out);
 		try {
-			Presenter presenter = new ConsolePresenter(System.out);
-			Board board = new Board();
-			Player xPlayer = new ConsolePlayer(scanner, System.out);
-			Player oPlayer = new ConsolePlayer(scanner, System.out);
-			Referee referee = new PrimeReferee();
-			
-			Game game = new Game(board, xPlayer, oPlayer, referee, presenter);
-			game.play(PlayerColor.X);
+			playGame(presenter, xPlayer, oPlayer);
 		} finally {
 			scanner.close();
 		}
 	}
-	
+
 	/**
 	 * Constructs and starts the GUI game
 	 */
 	private static void playGui() {
-		throw new NotImplementedException();
+
+		ButtonClickListener listener = new ButtonClickListener();
+		JLabel header = new JLabel();
+		Presenter presenter = new GUIPresenter(listener, header);
+
+		Player xPlayer = new GUIPlayer(listener, header);
+		Player oPlayer = new GUIPlayer(listener, header);
+
+		playGame(presenter, xPlayer, oPlayer);
+
 	}
+
+	private static void playGame(Presenter presenter, Player xPlayer,
+			Player oPlayer) {
+
+		Board board = new Board();
+		Referee referee = new PrimeReferee();
+		Game game = new Game(board, xPlayer, oPlayer, referee, presenter);
+		game.play(PlayerColor.X);
+
+	}
+
 }
